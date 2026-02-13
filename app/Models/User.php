@@ -33,6 +33,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function activityLogs()
+    {
+        return $this->morphMany(ActivityLog::class, 'user');
+    }
     /**
      * Get the attributes that should be cast.
      *
