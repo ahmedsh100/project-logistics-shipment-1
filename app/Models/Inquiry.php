@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Shipment extends Model
+class Inquiry extends Model
 {
-    protected $fillable = ["tracking_number","customer_id","status","amount","description","shipped_at","delivered_at"];
+    protected $fillable = ["name ","email ","message ","customer_id ","is_read "];
 
     public function customer(){
         return $this->belongsTo(Customer::class);
