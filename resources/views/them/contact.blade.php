@@ -1,4 +1,4 @@
-@extends("theme.master")
+@extends("them.master")
 
  @section("hero-title","contact")
  @section("contact-active","active")
