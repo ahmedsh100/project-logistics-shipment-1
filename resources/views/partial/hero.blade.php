@@ -9,10 +9,10 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="{{ route('home') }}">Home<br></a></li>
+          <li><a href="{{ route('home') }} " class="active">Home<br></a></li>
           <li><a href="{{ route('about') }}" class="active">About</a></li>
-          <li><a href="{{ route('services') }}">Services</a></li>
-          <li><a href="{{ route('pricing') }}">Pricing</a></li>
+          <li><a href="{{ route('services') }}" class="active">Services</a></li>
+          <li><a href="{{ route('pricing') }}" class="active">Pricing</a></li>
           <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
             <ul>
               <li><a href="#">Dropdown 1</a></li>
@@ -30,7 +30,7 @@
               <li><a href="#">Dropdown 4</a></li>
             </ul>
           </li>
-          <li><a href="{{ route('contact') }}">Contact</a></li>
+          <li><a href="{{ route('contact') }}" class="active">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -45,12 +45,32 @@
     <!-- Page Title -->
     <div class="page-title dark-background" data-aos="fade" style="background-image: url('{{ asset('assets/img/page-title-bg.jpg') }}');">
       <div class="container position-relative">
-        <h1>About</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <h1>
+            @if(request()->route()->getName() == 'about')
+                    About
+                @elseif (request()->route()->getName() == 'services')
+                    Services
+                @elseif (request()->route()->getName() == 'pricing')
+                    Pricing
+                @elseif (request()->route()->getName() == 'contact')
+                    Contact
+                 @elseif (request()->route()->getName() == 'home')
+                    Home
+                @endif</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li class="current">About</li>
+            <li><a href="{{ route('home') }}" class="active">Home</a></li>
+            <li class="current">
+                @if(request()->route()->getName() == 'about')
+                    About
+                @elseif (request()->route()->getName() == 'services')
+                    Services
+                @elseif (request()->route()->getName() == 'pricing')
+                    Pricing
+                @elseif (request()->route()->getName() == 'contact')
+                    Contact
+                @endif
+            </li>
           </ol>
         </nav>
       </div>

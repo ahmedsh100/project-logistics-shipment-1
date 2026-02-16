@@ -2,6 +2,8 @@
 
  @section("hero-title","contact")
  @section("contact-active","active")
+
+@section("content")
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 

@@ -1,201 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends("them.master")
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Starter Page - Logis Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+ @section("hero-title","starter")
+ @section("starter-active","active")
 
-  <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+@section("content")
+<section id="shipment-inquiry-section" class="shipment-inquiry-section section">
+  <div class="container section-title" data-aos="fade-up">
+    <span>استعلام عن الشحنة<br></span>
+    <h2>تتبع شحنتك</h2>
+    <p>أدخل رقم التتبع لمعرفة حالة شحنتك.</p>
+  </div>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <form id="tracking-form" class="card shadow-sm">
+          <div class="card-body">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-9">
+                <label for="tracking-number" class="form-label">رقم التتبع</label>
+                <input type="text" id="tracking-number" class="form-control form-control-lg" required placeholder="مثال: TRK-0001">
+              </div>
+              <div class="col-md-3 d-grid">
+                <button id="track-btn" type="submit" class="btn btn-primary btn-lg">تتبع الشحنة</button>
+              </div>
+            </div>
+            <div id="tracking-alert" class="alert alert-danger mt-3 d-none"></div>
+          </div>
+        </form>
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Logis
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Updated: Aug 07 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body class="starter-page-page">
-
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Logis</h1>
-      </a>
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="{{ route('home') }}">Home<br></a></li>
-          <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('services') }}">Services</a></li>
-          <li><a href="{{ route('pricing') }}">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="{{ route('contact') }}">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-
-      <a class="btn-getstarted" href="{{ route('get-quote') }}">Get a Quote</a>
-
-    </div>
-  </header>
-
-  <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title dark-background" data-aos="fade" style="background-image: url('{{ asset('assets/img/page-title-bg.jpg') }}');">
-      <div class="container position-relative">
-        <h1>Starter Page</h1>
-        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li class="current">Starter Page</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Starter Section Section -->
-    <section id="starter-section" class="starter-section section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <span>Starter Section<br></span>
-        <h2>Starter Section</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up">
-        <p>Use this page as a starter for your own custom pages.</p>
-      </div>
-
-    </section><!-- /Starter Section Section -->
-
-  </main>
-
-  <footer id="footer" class="footer dark-background">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-5 col-md-12 footer-about">
-          <a href="{{ route('home') }}" class="logo d-flex align-items-center">
-            <span class="sitename">Logis</span>
-          </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
-          <div class="mt-4 social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+        <div id="tracking-result" class="mt-4 d-none">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <div class="fs-6 text-muted">رقم التتبع</div>
+                  <div id="res-tracking" class="fs-5 fw-semibold"></div>
+                </div>
+                <span id="res-status" class="badge bg-secondary"></span>
+              </div>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="text-muted">العميل</div>
+                  <div id="res-customer"></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-muted">المبلغ</div>
+                  <div id="res-amount"></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-muted">تاريخ الشحن</div>
+                  <div id="res-shipped"></div>
+                </div>
+                <div class="col-md-6">
+                  <div class="text-muted">تاريخ التسليم</div>
+                  <div id="res-delivered"></div>
+                </div>
+                <div class="col-12">
+                  <div class="text-muted">الوصف</div>
+                  <div id="res-description"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="text-center col-lg-3 col-md-12 footer-contact text-md-start">
-          <h4>Contact Us</h4>
-          <p>A108 Adam Street</p>
-          <p>New York, NY 535022</p>
-          <p>United States</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
-        </div>
-
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="container mt-4 text-center copyright">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Logis</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
-      </div>
-    </div>
+<script>
+  const form = document.getElementById('tracking-form');
+  const input = document.getElementById('tracking-number');
+  const btn = document.getElementById('track-btn');
+  const alertBox = document.getElementById('tracking-alert');
+  const resultBox = document.getElementById('tracking-result');
+  const resTracking = document.getElementById('res-tracking');
+  const resStatus = document.getElementById('res-status');
+  const resCustomer = document.getElementById('res-customer');
+  const resAmount = document.getElementById('res-amount');
+  const resShipped = document.getElementById('res-shipped');
+  const resDelivered = document.getElementById('res-delivered');
+  const resDescription = document.getElementById('res-description');
 
-  </footer>
+  function statusBadge(status) {
+    const map = {
+      new: 'bg-secondary',
+      in_transit: 'bg-info',
+      delivered: 'bg-success',
+      delayed: 'bg-warning'
+    };
+    return map[status] || 'bg-secondary';
+  }
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  function fmt(val) {
+    return val ? val : '-';
+  }
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    alertBox.classList.add('d-none');
+    resultBox.classList.add('d-none');
+    const tracking = input.value.trim();
+    if (!tracking) {
+      alertBox.textContent = 'يرجى إدخال رقم التتبع';
+      alertBox.classList.remove('d-none');
+      return;
+    }
+    btn.disabled = true;
+    btn.textContent = 'جارِ البحث...';
+    try {
+      const resp = await fetch(`/api/track?tracking=${encodeURIComponent(tracking)}`);
+      if (!resp.ok) {
+        const data = await resp.json().catch(() => ({}));
+        alertBox.textContent = data.message || 'تعذر العثور على الشحنة';
+        alertBox.classList.remove('d-none');
+      } else {
+        const data = await resp.json();
+        resTracking.textContent = data.tracking_number || tracking;
+        resStatus.textContent = data.status || '-';
+        resStatus.className = `badge ${statusBadge(data.status)}`;
+        resCustomer.textContent = data.customer?.name || fmt(data.customer_id);
+        resAmount.textContent = typeof data.amount !== 'undefined' ? `${data.amount}` : '-';
+        resShipped.textContent = fmt(data.shipped_at);
+        resDelivered.textContent = fmt(data.delivered_at);
+        resDescription.textContent = fmt(data.description);
+        resultBox.classList.remove('d-none');
+      }
+    } catch (err) {
+      alertBox.textContent = 'حدث خطأ غير متوقع';
+      alertBox.classList.remove('d-none');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'تتبع الشحنة';
+    }
+  });
+</script>
 
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-  <!-- Main JS File -->
-  <script src="{{ asset('assets/js/main.js') }}"></script>
 
-</body>
-
-</html>
+@endsection
