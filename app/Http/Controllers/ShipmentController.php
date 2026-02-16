@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShipmentRequest;
 use App\Models\Shipment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -14,17 +15,9 @@ class ShipmentController extends Controller
         return response()->json($shipments);
     }
 
-    public function store(Request $request)
+    public function store(ShipmentRequest $request)
     {
-        $data = $request->validate([
-            'tracking_number' => ['required', 'string', 'max:255', 'unique:shipments,tracking_number'],
-            'customer_id' => ['required', 'integer', 'exists:customers,id'],
-            'status' => ['required', Rule::in(['new', 'in_transit', 'delivered', 'delayed'])],
-            'amount' => ['nullable', 'numeric'],
-            'description' => ['nullable', 'string'],
-            'shipped_at' => ['nullable', 'date'],
-            'delivered_at' => ['nullable', 'date'],
-        ]);
+        $data = $request->validated();
 
         $shipment = Shipment::create($data);
         $shipment->load('customer');
@@ -40,7 +33,7 @@ class ShipmentController extends Controller
         return response()->json($shipment);
     }
 
-    public function track(Request $request)
+    public function track(ShipmentRequest $request)
     {
         $tracking = $request->query('tracking');
         if (!$tracking) {
@@ -49,21 +42,14 @@ class ShipmentController extends Controller
         return $this->showByTracking($tracking);
     }
 
-    public function update(Request $request, string $tracking)
+    public function update(ShipmentRequest $request, string $tracking)
     {
         $shipment = Shipment::where('tracking_number', $tracking)->first();
         if (!$shipment) {
             return response()->json(['message' => 'Shipment not found'], 404);
         }
 
-        $data = $request->validate([
-            'customer_id' => ['nullable', 'integer', 'exists:customers,id'],
-            'status' => ['nullable', Rule::in(['new', 'in_transit', 'delivered', 'delayed'])],
-            'amount' => ['nullable', 'numeric'],
-            'description' => ['nullable', 'string'],
-            'shipped_at' => ['nullable', 'date'],
-            'delivered_at' => ['nullable', 'date'],
-        ]);
+        $data = $request->validated();
 
         $shipment->update($data);
         $shipment->load('customer');
