@@ -29,7 +29,7 @@
               <td>{{ $shipment->tracking_number }}</td>
               <td>{{ $shipment->customer->name ?? '-' }}</td>
               <td>{{ $shipment->status }}</td>
-              {{-- <td>{{ $shipment->created_at->format('Y-m-d') }}</td> --}}
+              <td>{{ $shipment->created_at->format('Y-m-d') }}</td>
               <td>
                 <a href="#" class="btn btn-sm btn-outline-secondary">عرض</a>
                 <a href="#" class="btn btn-sm btn-outline-primary">تعديل</a>

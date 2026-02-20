@@ -22,7 +22,7 @@ class ShipmentController extends Controller
      */
     public function create()
     {
-        //
+        return view("dashboard.shipments.create");
     }
 
     /**

@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\ShipmentController as AdminShipmentController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ShipmentController;
 
 Route::view('/', 'them.starter')->name('home');
 
@@ -18,13 +16,29 @@ Route::view('/service-details', 'them.service-details')->name('service-details')
 
 Route::view('/contact', 'them.contact')->name('contact');
 
-Route::get('/shipments', [AdminShipmentController::class,'index']);
+Route::view('/shipments', 'dashboard.shipments.index')->name('admin.shipments.index');
 
-// Route::prefix('api')->group(function () {
-//     Route::get('shipments', [ShipmentController::class, 'index']);
-//     Route::get('shipments/{tracking}', [ShipmentController::class, 'showByTracking']);
-//     Route::get('track', [ShipmentController::class, 'track']);
-//     Route::post('shipments', [ShipmentController::class, 'store']);
-//     Route::put('shipments/{tracking}', [ShipmentController::class, 'update']);
-//     Route::delete('shipments/{tracking}', [ShipmentController::class, 'destroy']);
-// });
+Route::prefix('admin')->group(function () {
+    Route::view('/', 'dashboard.dashboard.index')->name('admin.dashboard');
+    Route::view('/shipments', 'dashboard.shipments.index')->name('admin.shipments.index');
+    Route::view('/shipments/create', 'dashboard.shipments.create')->name('admin.shipments.create');
+    Route::get('/shipments/{tracking}', function () {
+        return view('dashboard.shipments.show');
+    })->name('admin.shipments.show');
+    Route::get('/shipments/{tracking}/edit', function () {
+        return view('dashboard.shipments.edit');
+    })->name('admin.shipments.edit');
+
+    Route::view('/users', 'dashboard.users.index')->name('admin.users.index');
+    Route::view('/users/create', 'dashboard.users.create')->name('admin.users.create');
+    Route::get('/users/{id}', function () {
+        return view('dashboard.users.show');
+    })->name('admin.users.show');
+    Route::get('/users/{id}/edit', function () {
+        return view('dashboard.users.edit');
+    })->name('admin.users.edit');
+
+    Route::view('/messages', 'dashboard.messages.index')->name('admin.messages.index');
+    Route::view('/reports', 'dashboard.reports.index')->name('admin.reports.index');
+    Route::view('/logs', 'dashboard.logs.index')->name('admin.logs.index');
+});
