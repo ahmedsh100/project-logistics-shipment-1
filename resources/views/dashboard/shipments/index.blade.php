@@ -3,13 +3,13 @@
 @section('page-title', 'الشحنات')
 
 @section('content')
-  <div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="h5 mb-0">كل الشحنات</h2>
+  <div class="mb-3 d-flex justify-content-between align-items-center">
+    <h2 class="mb-0 h5">كل الشحنات</h2>
     <a href="#" class="btn btn-primary">إضافة شحنة جديدة</a>
   </div>
 
-  <div class="card shadow-sm">
-    <div class="card-body p-0">
+  <div class="shadow-sm card">
+    <div class="p-0 card-body">
       <div class="table-responsive">
         <table class="table mb-0 align-middle">
           <thead class="table-light">
@@ -23,17 +23,19 @@
             </tr>
           </thead>
           <tbody>
+            @foreach($shipments as $shipment)
             <tr>
-              <td>1</td>
-              <td>TRK-0001</td>
-              <td>عميل تجريبي</td>
-              <td>قيد المعالجة</td>
-              <td>2024-01-01</td>
+              <td>{{ $loop->iteration }}</td>
+              <td>{{ $shipment->tracking_number }}</td>
+              <td>{{ $shipment->customer->name ?? '-' }}</td>
+              <td>{{ $shipment->status }}</td>
+              {{-- <td>{{ $shipment->created_at->format('Y-m-d') }}</td> --}}
               <td>
                 <a href="#" class="btn btn-sm btn-outline-secondary">عرض</a>
                 <a href="#" class="btn btn-sm btn-outline-primary">تعديل</a>
               </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
